@@ -1,13 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	var a [2]string
 	a[0] = "Paulo"
 	a[1] = "Gabriel"
 
-	for _, name := range a {
+	for idx, name := range a {
+		println(idx, " = ", name)
+	}
+
+	for _, name := range a { //use _ to ignore value, like in Rust
 		println(name)
 	}
 
@@ -51,4 +58,33 @@ func main() {
 
 	fmt.Println(len(sliceWithMake))
 	fmt.Println(cap(sliceWithMake))
+
+	sliceWithMakeWithoutCapacity := make([]int, 5)
+	fmt.Println(cap(sliceWithMakeWithoutCapacity))
+	fmt.Println(len(sliceWithMakeWithoutCapacity))
+
+	board := [][]string{
+		{"_", "_", "_"},
+		{"_", "_", "_"},
+		{"_", "_", "_"},
+	}
+
+	/*slices can have any type, including another slice*/
+	board[0][0] = "X"
+	board[2][2] = "O"
+	board[1][2] = "X"
+	board[1][0] = "O"
+	board[0][2] = "X"
+
+	for i := 0; i < len(board); i++ {
+		fmt.Printf("%s\n", strings.Join(board[i], " "))
+	}
+
+	var s []uint8
+	//append works with nil slices
+	s = append(s, 10) //append method alloc another slice
+	s = append(s, 20) //if slice cap cannot have capacity, another slice are alloc and
+	s = append(s, 30) //point to the new slice
+	fmt.Println(s)
+
 }
