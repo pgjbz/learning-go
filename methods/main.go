@@ -17,6 +17,10 @@ func (p *Person) changeName(name string) {
 	p.name = name
 }
 
+func (p Person) maybeChangeName(name string) { //receive a copy of value
+	p.name = name
+}
+
 /*
   methos are functions, and can be writer without the "receptor argument"
   (receptor arugment is argument between func and name of function)
@@ -36,5 +40,7 @@ func main() {
 	person.printAge()
 	person.printName()
 	person.changeName("My name")
+	person.printName()
+	person.maybeChangeName("Paulo")
 	person.printName()
 }
