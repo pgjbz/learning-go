@@ -12,6 +12,7 @@ import (
 
 func TestServer(t *testing.T) {
 	data := "hello, world"
+
 	t.Run("tells store to cancel work if request is canceleed", func(t *testing.T) {
 		store := &SpyStore{response: data}
 		svr := Server(store)
